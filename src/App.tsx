@@ -60,7 +60,7 @@ export const App: React.FC = () => {
             className="flex items-center gap-2.5 cursor-pointer group select-none"
           >
             <div className="w-10 h-10 bg-neoYellow border-3 border-neoDark shadow-neo-sm flex items-center justify-center text-xl group-hover:rotate-6 transition-transform">
-              🗃️
+              
             </div>
             <div>
               <div className="flex items-center gap-1.5">
@@ -169,10 +169,10 @@ export const App: React.FC = () => {
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-grotesk">
           <div className="flex items-center gap-2">
             <span className="p-1 bg-neoYellow border-2 border-neoDark font-bold">
-              NEOBRUTALISM
+              YASERU & DEPIT CANTIK
             </span>
             <span className="font-bold text-neoDark">
-              Digital Scrapbook & Receipt Jar (PWA)
+              Digital Scrapbook & Receipt Jar
             </span>
           </div>
 
