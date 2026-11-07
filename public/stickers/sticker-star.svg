@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+    <!-- Shadow -->
+    <path d="M40 8 L48 28 L68 32 L52 46 L58 66 L40 54 L22 66 L28 46 L12 32 L32 28 Z" fill="#121212" transform="translate(4, 4)"/>
+    <!-- Star -->
+    <path d="M40 8 L48 28 L68 32 L52 46 L58 66 L40 54 L22 66 L28 46 L12 32 L32 28 Z" fill="#FFE600" stroke="#121212" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="40" cy="38" r="4" fill="#121212"/>
+  </svg>

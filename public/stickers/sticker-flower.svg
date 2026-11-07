@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+    <g transform="translate(4,4)">
+      <circle cx="40" cy="25" r="12" fill="#121212"/>
+      <circle cx="55" cy="40" r="12" fill="#121212"/>
+      <circle cx="40" cy="55" r="12" fill="#121212"/>
+      <circle cx="25" cy="40" r="12" fill="#121212"/>
+    </g>
+    <!-- Petals -->
+    <circle cx="40" cy="25" r="12" fill="#FFFDF5" stroke="#121212" stroke-width="2.5"/>
+    <circle cx="55" cy="40" r="12" fill="#FFFDF5" stroke="#121212" stroke-width="2.5"/>
+    <circle cx="40" cy="55" r="12" fill="#FFFDF5" stroke="#121212" stroke-width="2.5"/>
+    <circle cx="25" cy="40" r="12" fill="#FFFDF5" stroke="#121212" stroke-width="2.5"/>
+    <!-- Center -->
+    <circle cx="40" cy="40" r="10" fill="#FFE600" stroke="#121212" stroke-width="2.5"/>
+  </svg>

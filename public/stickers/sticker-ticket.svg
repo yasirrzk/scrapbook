@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="60" viewBox="0 0 90 60">
+    <path d="M6 10 L84 10 L84 25 C80 25 76 27 76 30 C76 33 80 35 84 35 L84 50 L6 50 L6 35 C10 35 14 33 14 30 C14 27 10 25 6 25 Z" fill="#121212" transform="translate(3,3)"/>
+    <path d="M6 10 L84 10 L84 25 C80 25 76 27 76 30 C76 33 80 35 84 35 L84 50 L6 50 L6 35 C10 35 14 33 14 30 C14 27 10 25 6 25 Z" fill="#00E599" stroke="#121212" stroke-width="2.5"/>
+    <line x1="60" y1="12" x2="60" y2="48" stroke="#121212" stroke-width="2" stroke-dasharray="3 3"/>
+    <text x="33" y="35" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="900" fill="#121212" text-anchor="middle">ADMIT 2</text>
+  </svg>
