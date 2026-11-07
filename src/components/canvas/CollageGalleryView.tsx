@@ -35,7 +35,7 @@ export const CollageGalleryView: React.FC<CollageGalleryViewProps> = ({
       <div className="bg-neoGreen border-3 border-neoDark shadow-neo p-5 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h1 className="font-grotesk font-black text-2xl sm:text-3xl uppercase tracking-tight text-neoDark">
-            Galeri Kolase Scrapbook 🖼️
+            Galeri Kolase Scrapbook 
           </h1>
           <p className="font-grotesk font-medium text-sm text-neoDark/90 mt-1">
             Kumpulan kreasi kolase digital hasil karya kalian berdua.
@@ -110,7 +110,7 @@ export const CollageGalleryView: React.FC<CollageGalleryViewProps> = ({
       ) : (
         <div className="bg-white border-3 border-neoDark shadow-neo p-10 text-center flex flex-col items-center justify-center gap-3">
           <div className="w-14 h-14 bg-neoYellow border-3 border-neoDark flex items-center justify-center text-2xl shadow-neo-sm">
-            🎨
+            
           </div>
           <h3 className="font-grotesk font-black text-lg text-neoDark uppercase">
             Belum Ada Kolase yang Disimpan

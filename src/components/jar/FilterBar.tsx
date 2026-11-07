@@ -64,12 +64,12 @@ export const FilterBar: React.FC<FilterBarProps> = ({ totalCount }) => {
                   : 'bg-white text-neoDark hover:bg-[#FFF8E7]'
               }`}
             >
-              {cat === 'Semua' && '🌟 '}
-              {cat === 'Kuliner' && '🍔 '}
-              {cat === 'Transport' && '✈️ '}
-              {cat === 'Bioskop' && '🎬 '}
-              {cat === 'Liburan' && '🏖️ '}
-              {cat === 'Lainnya' && '✨ '}
+              {cat === 'Semua'}
+              {cat === 'Kuliner' }
+              {cat === 'Transport'}
+              {cat === 'Bioskop'}
+              {cat === 'Liburan'}
+              {cat === 'Lainnya'}
               {cat}
             </button>
           );

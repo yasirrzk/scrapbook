@@ -105,8 +105,7 @@ export const AddReceiptModal: React.FC<AddReceiptModalProps> = ({ isOpen, onClos
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 max-h-[80vh] overflow-y-auto">
           {error && (
-            <div className="p-3 bg-neoPink text-white border-2 border-neoDark font-grotesk font-bold text-xs">
-              ⚠️ {error}
+            <div className="p-3 bg-neoPink text-white border-2 border-neoDark font-grotesk font-bold text-xs"> {error}
             </div>
           )}
 
@@ -187,11 +186,11 @@ export const AddReceiptModal: React.FC<AddReceiptModalProps> = ({ isOpen, onClos
                 onChange={(e) => setCategory(e.target.value as ReceiptCategory)}
                 className="w-full px-3 py-2.5 font-grotesk font-bold text-sm bg-white border-3 border-neoDark shadow-neo-sm focus:shadow-neo focus:outline-none"
               >
-                <option value="Kuliner">Kuliner 🍔</option>
-                <option value="Transport">Transport ✈️</option>
-                <option value="Bioskop">Bioskop 🎬</option>
-                <option value="Liburan">Liburan 🏖️</option>
-                <option value="Lainnya">Lainnya ✨</option>
+                <option value="Kuliner">Kuliner</option>
+                <option value="Transport">Transport</option>
+                <option value="Bioskop">Bioskop</option>
+                <option value="Liburan">Liburan</option>
+                <option value="Lainnya">Lainnya</option>
               </select>
             </div>
 

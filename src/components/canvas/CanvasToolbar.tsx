@@ -123,7 +123,7 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
               className="px-2.5 py-1.5 text-xs font-handwriting text-base font-bold text-neoDark hover:bg-[#FFF8E7] flex items-center gap-1"
               title="Tambah tulisan tangan (font Caveat)"
             >
-              <Type size={14} /> Catatan ✍️
+              <Type size={14} /> Catatan 
             </button>
             <button
               onClick={() => onAddText('grotesk')}

@@ -103,7 +103,7 @@ export const FlashbackView: React.FC = () => {
                   className="w-full"
                 >
                   <Palette size={16} />
-                  Buat Kolase Ulang Tahun Kenangan Ini 🎨
+                  Buat Kolase Ulang Tahun Kenangan Ini 
                 </NeoButton>
               </div>
             );

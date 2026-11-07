@@ -79,9 +79,9 @@ export const StickerPicker: React.FC<StickerPickerProps> = ({
               }`}
             >
               {tab === 'all' && 'Semua'}
-              {tab === 'tape' && 'Selotip 🏷️'}
-              {tab === 'stamp' && 'Perangko 💌'}
-              {tab === 'doodle' && 'Stiker 🌟'}
+              {tab === 'tape' && 'Selotip'}
+              {tab === 'stamp' && 'Perangko'}
+              {tab === 'doodle' && 'Stiker'}
             </button>
           ))}
         </div>

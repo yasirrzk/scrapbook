@@ -23,7 +23,7 @@ export const JarView: React.FC = () => {
       <div className="relative bg-neoYellow border-3 border-neoDark shadow-neo p-5 sm:p-7 overflow-hidden">
         {/* Background decorative stamps */}
         <div className="absolute right-4 top-2 text-7xl select-none opacity-20 pointer-events-none transform rotate-12">
-          🏺
+          
         </div>
 
         <div className="relative z-10 max-w-2xl">

@@ -100,7 +100,7 @@ export const ReceiptViewModal: React.FC<ReceiptViewModalProps> = ({ receipt, onC
               Tutup
             </NeoButton>
             <NeoButton variant="pink" onClick={handleUseOnCanvas}>
-              Tempel ke Scrapbook 🎨
+              Tempel ke Scrapbook 
             </NeoButton>
           </div>
         </div>
