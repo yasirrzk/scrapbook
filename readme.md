@@ -49,7 +49,7 @@ Buku tempel kolase interaktif berbasis kanvas bebas untuk merangkai momen berdua
 
 ###  Fitur Pelengkap & Sentuhan Personal
 
-* ** On This Day (Nostalgia Flashback)**  
+* **On This Day (Nostalgia Flashback)**  
   Pengingat otomatis yang memunculkan memori lama di pagi hari: *"Hari ini tepat satu tahun lalu, kalian lagi ada di sini..."*.
 
 * **Pure PWA Experience & Offline-First**  
@@ -69,3 +69,6 @@ Aplikasi ini mengadopsi estetika **Neobrutalism** yang tegas, santai, dan penuh 
 │                            aksen pop Yellow & Pink     │
 │  • Dual Typography       : Space Grotesk × Caveat      │
 └────────────────────────────────────────────────────────┘
+ ````
+
+ *CREATED BY YASERU & DEPITOT*
