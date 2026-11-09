@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ReceiptCategory {
+  food
+  transport
+  movie
+  shopping
+  travel
+  other
+}
+
+model Couple {
+  id         String      @id @default(uuid()) @db.Uuid
+  name       String?
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+  receipts   Receipt[]
+  scrapbooks Scrapbook[]
+
+  @@map("couples")
+}
+
+model Receipt {
+  id         String          @id @default(uuid()) @db.Uuid
+  couple_id  String          @db.Uuid
+  created_by String
+  title      String
+  event_date DateTime        @db.Date
+  category   ReceiptCategory @default(other)
+  image_url  String
+  thumb_url  String?
+  amount     Decimal?        @db.Decimal(12, 2)
+  notes      String?
+  created_at DateTime        @default(now())
+  updated_at DateTime        @updatedAt
+
+  couple Couple @relation(fields: [couple_id], references: [id], onDelete: Cascade)
+
+  @@index([couple_id])
+  @@index([event_date])
+  @@map("receipts")
+}
+
+model Scrapbook {
+  id            String   @id @default(uuid()) @db.Uuid
+  couple_id     String   @db.Uuid
+  title         String
+  event_date    DateTime @db.Date
+  bg_color      String   @default("#FFFDF5")
+  canvas_json   Json
+  thumbnail_url String?
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  couple Couple @relation(fields: [couple_id], references: [id], onDelete: Cascade)
+
+  @@index([couple_id])
+  @@index([event_date])
+  @@map("scrapbooks")
+}
