@@ -86,7 +86,7 @@ export const ReceiptViewModal: React.FC<ReceiptViewModalProps> = ({ receipt, onC
           {receipt.notes && (
             <div className="p-4 bg-[#F3ECE1] border-3 border-neoDark transform -rotate-0.5">
               <span className="font-grotesk font-black text-xs uppercase text-neoDark block mb-1">
-                Catatan Berdua ✍️
+                Catatan Berdua 
               </span>
               <p className="font-handwriting text-2xl text-neoDark leading-relaxed">
                 "{receipt.notes}"
@@ -100,7 +100,7 @@ export const ReceiptViewModal: React.FC<ReceiptViewModalProps> = ({ receipt, onC
               Tutup
             </NeoButton>
             <NeoButton variant="pink" onClick={handleUseOnCanvas}>
-              Tempel ke Scrapbook 🎨
+              Tempel ke Scrapbook 
             </NeoButton>
           </div>
         </div>

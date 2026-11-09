@@ -113,7 +113,7 @@ export const AddReceiptModal: React.FC<AddReceiptModalProps> = ({ isOpen, onClos
           {/* Photo Upload Area */}
           <div>
             <label className="block font-grotesk font-bold text-xs uppercase tracking-wider text-neoDark mb-1.5">
-              Foto Tiket / Struk / Karcis *
+              Foto Tiket / Struk / Karcis 
             </label>
             <input
               type="file"
@@ -187,11 +187,11 @@ export const AddReceiptModal: React.FC<AddReceiptModalProps> = ({ isOpen, onClos
                 onChange={(e) => setCategory(e.target.value as ReceiptCategory)}
                 className="w-full px-3 py-2.5 font-grotesk font-bold text-sm bg-white border-3 border-neoDark shadow-neo-sm focus:shadow-neo focus:outline-none"
               >
-                <option value="Kuliner">Kuliner 🍔</option>
-                <option value="Transport">Transport ✈️</option>
-                <option value="Bioskop">Bioskop 🎬</option>
-                <option value="Liburan">Liburan 🏖️</option>
-                <option value="Lainnya">Lainnya ✨</option>
+                <option value="Kuliner">Kuliner </option>
+                <option value="Transport">Transport </option>
+                <option value="Bioskop">Bioskop </option>
+                <option value="Liburan">Liburan </option>
+                <option value="Lainnya">Lainnya </option>
               </select>
             </div>
 

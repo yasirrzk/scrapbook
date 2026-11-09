@@ -4,11 +4,11 @@ export interface Receipt {
   id?: number;
   title: string;
   category: ReceiptCategory;
-  date: string; // YYYY-MM-DD
+  date: string; 
   amount?: number;
   location?: string;
   notes?: string;
-  imageUrl: string; // base64 or object URL
+  imageUrl: string;
   favorite?: boolean;
   createdAt: number;
 }
@@ -16,9 +16,9 @@ export interface Receipt {
 export interface ScrapbookCollage {
   id?: number;
   title: string;
-  canvasJSON: string; // Fabric canvas serialized JSON
-  previewUrl: string; // Data URL for gallery thumbnail
-  date: string; // Associated date (YYYY-MM-DD)
+  canvasJSON: string;
+  previewUrl: string; 
+  date: string; 
   createdAt: number;
   updatedAt: number;
 }

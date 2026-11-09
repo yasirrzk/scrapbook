@@ -2,29 +2,33 @@ import React, { useRef } from 'react';
 import {
   MousePointer,
   PenTool,
+  Eraser,
   Type,
   Sticker,
   Image as ImageIcon,
   Receipt as ReceiptIcon,
-  Layers,
   Trash2,
   Download,
   Save,
   RotateCcw,
-  Sparkles,
   ArrowUp,
   ArrowDown,
+  Sparkles,
 } from 'lucide-react';
 import { NeoButton } from '../common/NeoButton';
 import confetti from 'canvas-confetti';
+import type { ToolMode } from '../../hooks/useCanvas';
 
 interface CanvasToolbarProps {
-  isDrawing: boolean;
-  onToggleDrawing: (enabled: boolean) => void;
+  tool: ToolMode;
+  onSelectTool: (tool: ToolMode) => void;
   brushColor: string;
   onSelectBrushColor: (color: string) => void;
   brushWidth: number;
   onSelectBrushWidth: (width: number) => void;
+  eraserSize: number;
+  onSelectEraserSize: (size: number) => void;
+  onClearDoodlesOnly: () => void;
   onAddText: (type: 'grotesk' | 'handwriting') => void;
   onOpenStickerPicker: () => void;
   onOpenReceiptPicker: () => void;
@@ -45,15 +49,19 @@ const BRUSH_COLORS = [
   { name: 'Muted Sage', hex: '#8EA48B' },
   { name: 'Dusty Mauve', hex: '#9C8EB9' },
   { name: 'Slate Blue', hex: '#799BA8' },
+  { name: 'Tipe-X Kertas', hex: '#FAF6F0' },
 ];
 
 export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
-  isDrawing,
-  onToggleDrawing,
+  tool,
+  onSelectTool,
   brushColor,
   onSelectBrushColor,
   brushWidth,
   onSelectBrushWidth,
+  eraserSize,
+  onSelectEraserSize,
+  onClearDoodlesOnly,
   onAddText,
   onOpenStickerPicker,
   onOpenReceiptPicker,
@@ -88,14 +96,14 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
 
   return (
     <div className="bg-[#FAF6F0] border-3 border-neoDark shadow-neo p-3 space-y-3">
-      {/* Top Actions: Mode, Insertables, Save/Export */}
+      {/* Top Actions: Mode Switcher, Object Inserters, Save & Export */}
       <div className="flex flex-wrap items-center justify-between gap-2">
-        {/* Interaction Modes */}
+        {/* Interaction Modes: Pilih, Doodle, Penghapus */}
         <div className="flex items-center gap-1.5 bg-white p-1 border-2 border-neoDark shadow-neo-sm">
           <button
-            onClick={() => onToggleDrawing(false)}
+            onClick={() => onSelectTool('select')}
             className={`px-3 py-1.5 text-xs font-grotesk font-black uppercase flex items-center gap-1.5 transition-all cursor-pointer ${
-              !isDrawing ? 'bg-neoYellow text-neoDark border-2 border-neoDark' : 'hover:bg-gray-100'
+              tool === 'select' ? 'bg-neoYellow text-neoDark border-2 border-neoDark' : 'hover:bg-gray-100'
             }`}
             title="Mode Pilih & Pindah Objek"
           >
@@ -103,14 +111,24 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
             Pilih
           </button>
           <button
-            onClick={() => onToggleDrawing(true)}
+            onClick={() => onSelectTool('draw')}
             className={`px-3 py-1.5 text-xs font-grotesk font-black uppercase flex items-center gap-1.5 transition-all cursor-pointer ${
-              isDrawing ? 'bg-neoPink text-white border-2 border-neoDark' : 'hover:bg-gray-100'
+              tool === 'draw' ? 'bg-neoPink text-white border-2 border-neoDark' : 'hover:bg-gray-100'
             }`}
             title="Mode Menggambar & Tulisan Tangan Bebas"
           >
             <PenTool size={14} />
             Doodle
+          </button>
+          <button
+            onClick={() => onSelectTool('eraser')}
+            className={`px-3 py-1.5 text-xs font-grotesk font-black uppercase flex items-center gap-1.5 transition-all cursor-pointer ${
+              tool === 'eraser' ? 'bg-neoPurple text-white border-2 border-neoDark' : 'hover:bg-gray-100'
+            }`}
+            title="Mode Penghapus (Hapus Coretan Doodle)"
+          >
+            <Eraser size={14} />
+            Penghapus
           </button>
         </div>
 
@@ -199,8 +217,8 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
         </div>
       </div>
 
-      {/* Sub-bar: If Drawing Mode is Active, show Brush settings; If Selection is Active, show Layer settings */}
-      {isDrawing ? (
+      {/* Sub-bar: Dynamic contextual controls based on active tool */}
+      {tool === 'draw' && (
         <div className="flex flex-wrap items-center justify-between gap-3 p-2 bg-neoYellow/25 border-2 border-dashed border-neoDark">
           <div className="flex items-center gap-2">
             <span className="text-xs font-grotesk font-black uppercase text-neoDark">
@@ -209,14 +227,20 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
             <div className="flex items-center gap-1.5">
               {BRUSH_COLORS.map((col) => (
                 <button
-                  key={col.hex}
+                  key={col.name}
                   onClick={() => onSelectBrushColor(col.hex)}
                   style={{ backgroundColor: col.hex }}
-                  className={`w-6 h-6 border-2 border-neoDark transition-transform cursor-pointer ${
+                  className={`w-6 h-6 border-2 border-neoDark transition-transform cursor-pointer relative ${
                     brushColor === col.hex ? 'scale-125 shadow-neo-sm ring-2 ring-neoDark' : ''
                   }`}
                   title={col.name}
-                />
+                >
+                  {col.name === 'Tipe-X Kertas' && (
+                    <span className="absolute inset-0 flex items-center justify-center text-[9px] font-black leading-none text-neoDark">
+                      X
+                    </span>
+                  )}
+                </button>
               ))}
             </div>
           </div>
@@ -240,7 +264,56 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
             </div>
           </div>
         </div>
-      ) : (
+      )}
+
+      {tool === 'eraser' && (
+        <div className="flex flex-wrap items-center justify-between gap-3 p-2.5 bg-neoPurple/20 border-2 border-dashed border-neoDark">
+          <div className="flex items-center gap-2.5">
+            <span className="inline-flex items-center gap-1 text-xs font-grotesk font-black uppercase text-neoDark bg-neoPurple text-white px-2 py-0.5 border border-neoDark">
+              <Eraser size={12} />
+              Penghapus Aktif
+            </span>
+            <span className="text-xs font-grotesk font-medium text-neoDark/80 hidden sm:inline">
+              Klik atau gesek di atas garis doodle untuk menghapusnya.
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
+              <span className="text-xs font-grotesk font-bold text-neoDark mr-1">Ukuran:</span>
+              {[
+                { label: 'S (8px)', val: 8 },
+                { label: 'M (18px)', val: 18 },
+                { label: 'L (32px)', val: 32 },
+              ].map((s) => (
+                <button
+                  key={s.val}
+                  onClick={() => onSelectEraserSize(s.val)}
+                  className={`px-2 py-0.5 text-xs font-bold border-2 border-neoDark cursor-pointer ${
+                    eraserSize === s.val ? 'bg-neoDark text-white' : 'bg-white text-neoDark'
+                  }`}
+                >
+                  {s.label}
+                </button>
+              ))}
+            </div>
+
+            <button
+              onClick={() => {
+                if (confirm('Hapus seluruh coretan doodle di kanvas? (Foto & teks tetap aman)')) {
+                  onClearDoodlesOnly();
+                }
+              }}
+              className="p-1 px-2 border-2 border-neoDark bg-white hover:bg-neoPink hover:text-white text-xs font-grotesk font-bold flex items-center gap-1 cursor-pointer transition-colors"
+              title="Hapus hanya coretan gambar tangan bebas, simpan foto & teks"
+            >
+              <RotateCcw size={12} /> Hapus Semua Coretan
+            </button>
+          </div>
+        </div>
+      )}
+
+      {tool === 'select' && (
         <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-grotesk">
           <div className="flex items-center gap-1.5">
             <span className="text-neoDark/70 font-bold">Lapisan Objek:</span>

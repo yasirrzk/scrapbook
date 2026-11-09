@@ -82,7 +82,7 @@ export const ReceiptCard: React.FC<ReceiptCardProps> = ({
         />
         <div className="absolute inset-0 bg-neoDark/0 group-hover/img:bg-neoDark/20 transition-colors flex items-center justify-center">
           <span className="opacity-0 group-hover/img:opacity-100 bg-neoYellow border-2 border-neoDark text-neoDark text-xs font-black px-2 py-1 shadow-neo-sm transform -rotate-2 transition-opacity">
-            Lihat Struk 🔍
+            Lihat Struk 
           </span>
         </div>
       </div>

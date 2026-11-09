@@ -1,7 +1,9 @@
 import { useRef, useState, useCallback, useEffect } from 'react';
-import { Canvas, FabricImage, IText, PencilBrush, type FabricObject } from 'fabric';
+import { Canvas, FabricImage, IText, PencilBrush, Point, type FabricObject } from 'fabric';
 import { db } from '../db';
 import type { ScrapbookCollage } from '../types';
+
+export type ToolMode = 'select' | 'draw' | 'eraser';
 
 export interface UseCanvasOptions {
   width?: number;
@@ -10,11 +12,63 @@ export interface UseCanvasOptions {
 
 export function useCanvas() {
   const canvasRef = useRef<Canvas | null>(null);
-  const [isDrawing, setIsDrawing] = useState(false);
+  const [activeTool, setActiveTool] = useState<ToolMode>('select');
+  const activeToolRef = useRef<ToolMode>('select');
+  activeToolRef.current = activeTool;
+
   const [brushColor, setBrushColor] = useState('#221F1B');
   const [brushWidth, setBrushWidth] = useState(4);
+  const [eraserSize, setEraserSize] = useState(18);
+  const eraserSizeRef = useRef(18);
+  eraserSizeRef.current = eraserSize;
+
   const [hasSelection, setHasSelection] = useState(false);
-  const [canUndo, setCanUndo] = useState(false);
+
+  // Helper to erase paths at given event location
+  const handleEraseAtEvent = useCallback((e: any) => {
+    if (activeToolRef.current !== 'eraser') return;
+    const c = canvasRef.current;
+    if (!c) return;
+
+    const scenePt = e.scenePoint || e.pointer;
+    if (!scenePt) return;
+
+    const radius = eraserSizeRef.current / 2;
+    const samplePoints: Point[] = [
+      scenePt,
+      new Point(scenePt.x + radius, scenePt.y),
+      new Point(scenePt.x - radius, scenePt.y),
+      new Point(scenePt.x, scenePt.y + radius),
+      new Point(scenePt.x, scenePt.y - radius),
+      new Point(scenePt.x + radius * 0.7, scenePt.y + radius * 0.7),
+      new Point(scenePt.x - radius * 0.7, scenePt.y - radius * 0.7),
+    ];
+
+    let changed = false;
+    const objects = c.getObjects();
+
+    // Check direct target hit first
+    if (e.target && e.target.type === 'path') {
+      c.remove(e.target);
+      changed = true;
+    }
+
+    // Check all path objects against eraser radius
+    for (let i = objects.length - 1; i >= 0; i--) {
+      const obj = objects[i];
+      if (obj.type === 'path') {
+        const isHit = samplePoints.some((pt) => obj.containsPoint(pt));
+        if (isHit) {
+          c.remove(obj);
+          changed = true;
+        }
+      }
+    }
+
+    if (changed) {
+      c.renderAll();
+    }
+  }, []);
 
   // Initialize Canvas
   const initCanvas = useCallback((canvasEl: HTMLCanvasElement, width = 800, height = 600) => {
@@ -31,29 +85,74 @@ export function useCanvas() {
     });
 
     const brush = new PencilBrush(fabricCanvas);
-    brush.color = '#221F1B';
-    brush.width = 4;
+    brush.color = brushColor;
+    brush.width = brushWidth;
     fabricCanvas.freeDrawingBrush = brush;
 
     fabricCanvas.on('selection:created', () => setHasSelection(true));
     fabricCanvas.on('selection:updated', () => setHasSelection(true));
     fabricCanvas.on('selection:cleared', () => setHasSelection(false));
 
+    // Eraser mouse drag & click tracking
+    let isMouseDown = false;
+    fabricCanvas.on('mouse:down', (e) => {
+      if (activeToolRef.current === 'eraser') {
+        isMouseDown = true;
+        handleEraseAtEvent(e);
+      }
+    });
+
+    fabricCanvas.on('mouse:move', (e) => {
+      if (activeToolRef.current === 'eraser' && isMouseDown) {
+        handleEraseAtEvent(e);
+      }
+    });
+
+    fabricCanvas.on('mouse:up', () => {
+      isMouseDown = false;
+    });
+
     canvasRef.current = fabricCanvas;
     return fabricCanvas;
-  }, []);
+  }, [brushColor, brushWidth, handleEraseAtEvent]);
 
-  // Toggle freehand drawing mode
-  const setDrawingMode = useCallback((active: boolean) => {
+  // Set active tool mode ('select' | 'draw' | 'eraser')
+  const setTool = useCallback((tool: ToolMode) => {
+    setActiveTool(tool);
+    activeToolRef.current = tool;
     const c = canvasRef.current;
     if (!c) return;
-    c.isDrawingMode = active;
-    setIsDrawing(active);
-    if (active && c.freeDrawingBrush) {
-      c.freeDrawingBrush.color = brushColor;
-      c.freeDrawingBrush.width = brushWidth;
+
+    if (tool === 'draw') {
+      c.isDrawingMode = true;
+      c.selection = false;
+      c.discardActiveObject();
+      if (c.freeDrawingBrush) {
+        c.freeDrawingBrush.color = brushColor;
+        c.freeDrawingBrush.width = brushWidth;
+      }
+      c.defaultCursor = 'crosshair';
+      c.hoverCursor = 'crosshair';
+    } else if (tool === 'eraser') {
+      c.isDrawingMode = false;
+      c.selection = false;
+      c.discardActiveObject();
+      c.defaultCursor = 'cell';
+      c.hoverCursor = 'cell';
+    } else {
+      // 'select'
+      c.isDrawingMode = false;
+      c.selection = true;
+      c.defaultCursor = 'default';
+      c.hoverCursor = 'move';
     }
+    c.renderAll();
   }, [brushColor, brushWidth]);
+
+  // Backwards compatibility alias for boolean isDrawing
+  const setDrawingMode = useCallback((active: boolean) => {
+    setTool(active ? 'draw' : 'select');
+  }, [setTool]);
 
   // Update brush settings
   const updateBrushColor = useCallback((color: string) => {
@@ -72,13 +171,28 @@ export function useCanvas() {
     }
   }, []);
 
+  const updateEraserSize = useCallback((size: number) => {
+    setEraserSize(size);
+    eraserSizeRef.current = size;
+  }, []);
+
+  // Clear only freehand drawn doodle paths (keep photos & text)
+  const clearDoodlesOnly = useCallback(() => {
+    const c = canvasRef.current;
+    if (!c) return;
+    const paths = c.getObjects().filter((obj) => obj.type === 'path');
+    paths.forEach((p) => c.remove(p));
+    c.discardActiveObject();
+    c.renderAll();
+  }, []);
+
   // Add Text (Space Grotesk or Caveat handwritten)
   const addText = useCallback((type: 'grotesk' | 'handwriting' = 'handwriting', initialText?: string) => {
     const c = canvasRef.current;
     if (!c) return;
 
-    // Turn off drawing mode when adding text
-    setDrawingMode(false);
+    // Switch to select mode when adding text
+    setTool('select');
 
     const isHandwriting = type === 'handwriting';
     const textStr = initialText || (isHandwriting ? 'Kenangan manis berdua...' : 'MEMORI 2026');
@@ -100,15 +214,15 @@ export function useCanvas() {
     c.add(iText);
     c.setActiveObject(iText);
     c.renderAll();
-  }, [setDrawingMode]);
+  }, [setTool]);
 
   // Add Image or Sticker
   const addImage = useCallback(async (url: string, isSticker = false) => {
     const c = canvasRef.current;
     if (!c) return;
 
-    // Turn off drawing mode
-    setDrawingMode(false);
+    // Switch to select mode
+    setTool('select');
 
     try {
       const img = await FabricImage.fromURL(url, {
@@ -137,7 +251,7 @@ export function useCanvas() {
     } catch (err) {
       console.error('Failed to load image to canvas', err);
     }
-  }, [setDrawingMode]);
+  }, [setTool]);
 
   // Layer management
   const bringForward = useCallback(() => {
@@ -193,7 +307,7 @@ export function useCanvas() {
     }
   }, []);
 
-  // Clear canvas
+  // Clear entire canvas
   const clearCanvas = useCallback(() => {
     const c = canvasRef.current;
     if (!c) return;
@@ -275,12 +389,17 @@ export function useCanvas() {
   return {
     canvasRef,
     initCanvas,
-    isDrawing,
+    activeTool,
+    setTool,
+    isDrawing: activeTool === 'draw',
     setDrawingMode,
     brushColor,
     updateBrushColor,
     brushWidth,
     updateBrushWidth,
+    eraserSize,
+    updateEraserSize,
+    clearDoodlesOnly,
     hasSelection,
     addText,
     addImage,

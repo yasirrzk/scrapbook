@@ -24,12 +24,15 @@ export const CanvasArea: React.FC = () => {
 
   const {
     initCanvas,
-    isDrawing,
-    setDrawingMode,
+    activeTool,
+    setTool,
     brushColor,
     updateBrushColor,
     brushWidth,
     updateBrushWidth,
+    eraserSize,
+    updateEraserSize,
+    clearDoodlesOnly,
     hasSelection,
     addText,
     addImage,
@@ -101,12 +104,15 @@ export const CanvasArea: React.FC = () => {
     <div className="space-y-4">
       {/* Canvas Controls Toolbar */}
       <CanvasToolbar
-        isDrawing={isDrawing}
-        onToggleDrawing={setDrawingMode}
+        tool={activeTool}
+        onSelectTool={setTool}
         brushColor={brushColor}
         onSelectBrushColor={updateBrushColor}
         brushWidth={brushWidth}
         onSelectBrushWidth={updateBrushWidth}
+        eraserSize={eraserSize}
+        onSelectEraserSize={updateEraserSize}
+        onClearDoodlesOnly={clearDoodlesOnly}
         onAddText={addText}
         onOpenStickerPicker={() => setIsStickerPickerOpen(true)}
         onOpenReceiptPicker={() => setIsReceiptPickerOpen(true)}
@@ -148,9 +154,9 @@ export const CanvasArea: React.FC = () => {
       {/* Hints bar */}
       <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 bg-white border-2 border-neoDark text-xs font-grotesk text-neoDark/80">
         <span>
-          💡 <strong>Tips Scrapbook:</strong> Klik dua kali pada teks untuk mengedit. Geser sudut objek untuk memutar atau mengubah ukuran.
+          <strong>Tips Scrapbook:</strong> Klik dua kali pada teks untuk mengedit. Geser sudut objek untuk memutar atau mengubah ukuran.
         </span>
-        <span className="font-bold text-neoPink">Export PNG mendukung cetak high-res 300dpi!</span>
+        <span className="font-bold text-neoPink">Export Image</span>
       </div>
 
       {/* Sticker Picker Modal */}
