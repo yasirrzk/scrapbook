@@ -14,8 +14,8 @@ export default defineConfig({
         name: 'Digital Scrapbook & Receipt Jar',
         short_name: 'Scrapbook',
         description: 'Aplikasi kenangan privat & kolase scrapbook neobrutalism berdua bersama pasangan',
-        theme_color: '#FFFDF5',
-        background_color: '#FFFDF5',
+        theme_color: '#FAF6F0',
+        background_color: '#FAF6F0',
         display: 'standalone',
         orientation: 'portrait',
         icons: [

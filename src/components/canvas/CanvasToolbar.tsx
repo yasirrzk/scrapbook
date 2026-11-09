@@ -39,12 +39,12 @@ interface CanvasToolbarProps {
 }
 
 const BRUSH_COLORS = [
-  { name: 'Dark', hex: '#121212' },
-  { name: 'Pink', hex: '#FF6584' },
-  { name: 'Yellow', hex: '#FFE600' },
-  { name: 'Green', hex: '#00E599' },
-  { name: 'Purple', hex: '#A388EE' },
-  { name: 'Blue', hex: '#58C4DC' },
+  { name: 'Espresso', hex: '#221F1B' },
+  { name: 'Dusty Rose', hex: '#D87D88' },
+  { name: 'Warm Honey', hex: '#EAC875' },
+  { name: 'Muted Sage', hex: '#8EA48B' },
+  { name: 'Dusty Mauve', hex: '#9C8EB9' },
+  { name: 'Slate Blue', hex: '#799BA8' },
 ];
 
 export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
@@ -82,19 +82,19 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
       particleCount: 80,
       spread: 70,
       origin: { y: 0.6 },
-      colors: ['#FFE600', '#FF6584', '#A388EE', '#00E599', '#121212'],
+      colors: ['#EAC875', '#D87D88', '#9C8EB9', '#8EA48B', '#799BA8', '#221F1B'],
     });
   };
 
   return (
-    <div className="bg-[#FFFDF5] border-3 border-neoDark shadow-neo p-3 space-y-3">
+    <div className="bg-[#FAF6F0] border-3 border-neoDark shadow-neo p-3 space-y-3">
       {/* Top Actions: Mode, Insertables, Save/Export */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         {/* Interaction Modes */}
         <div className="flex items-center gap-1.5 bg-white p-1 border-2 border-neoDark shadow-neo-sm">
           <button
             onClick={() => onToggleDrawing(false)}
-            className={`px-3 py-1.5 text-xs font-grotesk font-black uppercase flex items-center gap-1.5 transition-all ${
+            className={`px-3 py-1.5 text-xs font-grotesk font-black uppercase flex items-center gap-1.5 transition-all cursor-pointer ${
               !isDrawing ? 'bg-neoYellow text-neoDark border-2 border-neoDark' : 'hover:bg-gray-100'
             }`}
             title="Mode Pilih & Pindah Objek"
@@ -104,7 +104,7 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
           </button>
           <button
             onClick={() => onToggleDrawing(true)}
-            className={`px-3 py-1.5 text-xs font-grotesk font-black uppercase flex items-center gap-1.5 transition-all ${
+            className={`px-3 py-1.5 text-xs font-grotesk font-black uppercase flex items-center gap-1.5 transition-all cursor-pointer ${
               isDrawing ? 'bg-neoPink text-white border-2 border-neoDark' : 'hover:bg-gray-100'
             }`}
             title="Mode Menggambar & Tulisan Tangan Bebas"
@@ -120,14 +120,14 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
           <div className="inline-flex border-2 border-neoDark bg-white">
             <button
               onClick={() => onAddText('handwriting')}
-              className="px-2.5 py-1.5 text-xs font-handwriting text-base font-bold text-neoDark hover:bg-[#FFF8E7] flex items-center gap-1"
+              className="px-2.5 py-1.5 text-xs font-handwriting text-base font-bold text-neoDark hover:bg-[#F3ECE1] flex items-center gap-1 cursor-pointer"
               title="Tambah tulisan tangan (font Caveat)"
             >
-              <Type size={14} /> Catatan 
+              <Type size={14} /> Catatan ✍️
             </button>
             <button
               onClick={() => onAddText('grotesk')}
-              className="px-2.5 py-1.5 text-xs font-grotesk font-black uppercase border-l-2 border-neoDark hover:bg-[#FFF8E7]"
+              className="px-2.5 py-1.5 text-xs font-grotesk font-black uppercase border-l-2 border-neoDark hover:bg-[#F3ECE1] cursor-pointer"
               title="Tambah teks cetak (Space Grotesk)"
             >
               JUDUL
@@ -201,7 +201,7 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
 
       {/* Sub-bar: If Drawing Mode is Active, show Brush settings; If Selection is Active, show Layer settings */}
       {isDrawing ? (
-        <div className="flex flex-wrap items-center justify-between gap-3 p-2 bg-neoYellow/30 border-2 border-dashed border-neoDark">
+        <div className="flex flex-wrap items-center justify-between gap-3 p-2 bg-neoYellow/25 border-2 border-dashed border-neoDark">
           <div className="flex items-center gap-2">
             <span className="text-xs font-grotesk font-black uppercase text-neoDark">
               Warna Doodle:
@@ -212,7 +212,7 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
                   key={col.hex}
                   onClick={() => onSelectBrushColor(col.hex)}
                   style={{ backgroundColor: col.hex }}
-                  className={`w-6 h-6 border-2 border-neoDark transition-transform ${
+                  className={`w-6 h-6 border-2 border-neoDark transition-transform cursor-pointer ${
                     brushColor === col.hex ? 'scale-125 shadow-neo-sm ring-2 ring-neoDark' : ''
                   }`}
                   title={col.name}
@@ -230,7 +230,7 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
                 <button
                   key={w}
                   onClick={() => onSelectBrushWidth(w)}
-                  className={`px-2 py-0.5 text-xs font-bold border-2 border-neoDark ${
+                  className={`px-2 py-0.5 text-xs font-bold border-2 border-neoDark cursor-pointer ${
                     brushWidth === w ? 'bg-neoDark text-white' : 'bg-white text-neoDark'
                   }`}
                 >
@@ -243,11 +243,11 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
       ) : (
         <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-grotesk">
           <div className="flex items-center gap-1.5">
-            <span className="text-gray-600 font-bold">Lapisan Objek:</span>
+            <span className="text-neoDark/70 font-bold">Lapisan Objek:</span>
             <button
               onClick={onBringForward}
               disabled={!hasSelection}
-              className="p-1 px-2 border-2 border-neoDark bg-white hover:bg-yellow-50 disabled:opacity-40 flex items-center gap-1 font-bold"
+              className="p-1 px-2 border-2 border-neoDark bg-white hover:bg-[#F3ECE1] disabled:opacity-40 flex items-center gap-1 font-bold cursor-pointer"
               title="Bawa objek ke depan"
             >
               <ArrowUp size={12} /> Naik
@@ -255,7 +255,7 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
             <button
               onClick={onSendBackward}
               disabled={!hasSelection}
-              className="p-1 px-2 border-2 border-neoDark bg-white hover:bg-yellow-50 disabled:opacity-40 flex items-center gap-1 font-bold"
+              className="p-1 px-2 border-2 border-neoDark bg-white hover:bg-[#F3ECE1] disabled:opacity-40 flex items-center gap-1 font-bold cursor-pointer"
               title="Kirim objek ke belakang"
             >
               <ArrowDown size={12} /> Turun
@@ -263,7 +263,7 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
             <button
               onClick={onDeleteSelected}
               disabled={!hasSelection}
-              className="p-1 px-2 border-2 border-neoDark bg-white hover:bg-red-500 hover:text-white disabled:opacity-40 flex items-center gap-1 font-bold ml-1"
+              className="p-1 px-2 border-2 border-neoDark bg-white hover:bg-neoPink hover:text-white disabled:opacity-40 flex items-center gap-1 font-bold ml-1 cursor-pointer"
               title="Hapus objek yang dipilih"
             >
               <Trash2 size={12} /> Hapus Objek
@@ -272,7 +272,7 @@ export const CanvasToolbar: React.FC<CanvasToolbarProps> = ({
 
           <button
             onClick={onClear}
-            className="p-1 px-2 border-2 border-neoDark bg-white hover:bg-red-100 text-neoDark font-bold flex items-center gap-1"
+            className="p-1 px-2 border-2 border-neoDark bg-white hover:bg-[#FBECEE] text-neoDark font-bold flex items-center gap-1 cursor-pointer"
             title="Bersihkan seluruh kanvas"
           >
             <RotateCcw size={12} /> Reset Kanvas

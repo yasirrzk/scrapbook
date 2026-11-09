@@ -17,13 +17,13 @@ export const NeoButton: React.FC<NeoButtonProps> = ({
   ...props
 }) => {
   const variantStyles = {
-    yellow: 'bg-neoYellow text-neoDark hover:bg-[#ffe01b]',
-    pink: 'bg-neoPink text-white hover:bg-[#f05072]',
-    purple: 'bg-neoPurple text-white hover:bg-[#9172e2]',
-    green: 'bg-neoGreen text-neoDark hover:bg-[#00cf8a]',
-    blue: 'bg-neoBlue text-neoDark hover:bg-[#47b5ce]',
-    white: 'bg-white text-neoDark hover:bg-neoBase',
-    dark: 'bg-neoDark text-neoBase hover:bg-black',
+    yellow: 'bg-neoYellow text-neoDark hover:bg-[#DEB85D]',
+    pink: 'bg-neoPink text-white hover:bg-[#C96C77]',
+    purple: 'bg-neoPurple text-white hover:bg-[#8A7AAB]',
+    green: 'bg-neoGreen text-white hover:bg-[#7D937A]',
+    blue: 'bg-neoBlue text-white hover:bg-[#688A96]',
+    white: 'bg-white text-neoDark hover:bg-[#F4EFE6]',
+    dark: 'bg-neoDark text-neoBase hover:bg-[#161412]',
   };
 
   const sizeStyles = {

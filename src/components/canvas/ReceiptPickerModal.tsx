@@ -29,7 +29,7 @@ export const ReceiptPickerModal: React.FC<ReceiptPickerModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-neoDark/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-      <div className="bg-[#FFFDF5] border-3 border-neoDark shadow-neo-xl w-full max-w-xl my-6">
+      <div className="bg-[#FAF6F0] border-3 border-neoDark shadow-neo-xl w-full max-w-xl my-6">
         {/* Header */}
         <div className="bg-neoYellow border-b-3 border-neoDark p-3 sm:p-4 flex items-center justify-between">
           <h3 className="font-grotesk font-black text-base uppercase text-neoDark">
@@ -37,7 +37,7 @@ export const ReceiptPickerModal: React.FC<ReceiptPickerModalProps> = ({
           </h3>
           <button
             onClick={onClose}
-            className="p-1 border-2 border-neoDark bg-white hover:bg-neoPink hover:text-white transition-colors"
+            className="p-1 border-2 border-neoDark bg-white hover:bg-neoPink hover:text-white transition-colors cursor-pointer"
           >
             <X size={18} />
           </button>
@@ -67,7 +67,7 @@ export const ReceiptPickerModal: React.FC<ReceiptPickerModalProps> = ({
                   onSelectReceipt(receipt);
                   onClose();
                 }}
-                className="bg-white border-2 border-neoDark p-2 hover:bg-yellow-50 cursor-pointer shadow-neo-sm hover:shadow-neo transition-all flex flex-col justify-between"
+                className="bg-white border-2 border-neoDark p-2 hover:bg-[#F3ECE1] cursor-pointer shadow-neo-sm hover:shadow-neo transition-all flex flex-col justify-between"
               >
                 <div className="aspect-[4/3] bg-gray-50 border border-neoDark mb-2 overflow-hidden flex items-center justify-center">
                   <img
@@ -81,12 +81,12 @@ export const ReceiptPickerModal: React.FC<ReceiptPickerModalProps> = ({
                   <p className="font-grotesk font-bold text-xs text-neoDark line-clamp-1">
                     {receipt.title}
                   </p>
-                  <p className="text-[10px] text-gray-500 font-grotesk">{receipt.date}</p>
+                  <p className="text-[10px] text-neoDark/60 font-grotesk">{receipt.date}</p>
                 </div>
               </div>
             ))
           ) : (
-            <div className="col-span-full py-8 text-center text-xs font-bold text-gray-500">
+            <div className="col-span-full py-8 text-center text-xs font-bold text-neoDark/60">
               Belum ada karcis yang tersimpan di toples.
             </div>
           )}

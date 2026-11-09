@@ -64,7 +64,7 @@ export const PwaBanner: React.FC = () => {
             </NeoButton>
             <button
               onClick={() => setDismissed(true)}
-              className="p-1.5 border-2 border-neoDark bg-white hover:bg-gray-100"
+              className="p-1.5 border-2 border-neoDark bg-white hover:bg-gray-100 cursor-pointer"
               title="Tutup banner"
             >
               <X size={15} />

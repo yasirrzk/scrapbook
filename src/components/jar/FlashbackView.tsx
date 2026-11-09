@@ -58,7 +58,7 @@ export const FlashbackView: React.FC = () => {
             return (
               <div
                 key={receipt.id}
-                className="bg-[#FFFDF5] border-3 border-neoDark shadow-neo-lg p-5 flex flex-col justify-between relative transform hover:-translate-y-1 transition-transform"
+                className="bg-[#FAF6F0] border-3 border-neoDark shadow-neo-lg p-5 flex flex-col justify-between relative transform hover:-translate-y-1 transition-transform"
               >
                 {/* Years badge */}
                 <div className="flex items-center justify-between mb-3">
@@ -72,7 +72,7 @@ export const FlashbackView: React.FC = () => {
                 <h3 className="font-grotesk font-black text-xl text-neoDark mb-1">
                   {receipt.title}
                 </h3>
-                <p className="font-bold text-xs text-gray-600 mb-3 flex items-center gap-2 font-grotesk">
+                <p className="font-bold text-xs text-neoDark/70 mb-3 flex items-center gap-2 font-grotesk">
                   <span>📅 {receipt.date}</span>
                   {receipt.location && <span>• 📍 {receipt.location}</span>}
                 </p>
@@ -88,7 +88,7 @@ export const FlashbackView: React.FC = () => {
 
                 {/* Handwritten memory note */}
                 {receipt.notes && (
-                  <div className="p-3 bg-[#FFF8E7] border-2 border-dashed border-neoDark mb-4">
+                  <div className="p-3 bg-[#F3ECE1] border-2 border-dashed border-neoDark mb-4">
                     <p className="font-handwriting text-xl text-neoDark leading-snug">
                       "{receipt.notes}"
                     </p>
@@ -117,7 +117,7 @@ export const FlashbackView: React.FC = () => {
           <h3 className="font-grotesk font-black text-lg text-neoDark uppercase">
             Belum Ada Flashback Untuk Tanggal Hari Ini
           </h3>
-          <p className="font-grotesk text-sm text-gray-600 max-w-md">
+          <p className="font-grotesk text-sm text-neoDark/70 max-w-md">
             Hari ini belum ada catatan karcis dari tahun lalu ({today.getDate()}{' '}
             {today.toLocaleString('id-ID', { month: 'long' })}). Terus kumpulkan karcis kencan
             kalian sekarang, agar tahun depan kartu kenangan ini muncul!

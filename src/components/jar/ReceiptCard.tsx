@@ -32,7 +32,7 @@ export const ReceiptCard: React.FC<ReceiptCardProps> = ({
     : null;
 
   return (
-    <div className="group relative bg-[#FFFDF5] border-3 border-neoDark shadow-neo hover:shadow-neo-lg transition-all duration-150 flex flex-col justify-between overflow-hidden">
+    <div className="group relative bg-[#FAF6F0] border-3 border-neoDark shadow-neo hover:shadow-neo-lg transition-all duration-150 flex flex-col justify-between overflow-hidden">
       {/* Decorative top washi tape aesthetic */}
       <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-20 h-4 bg-neoYellow border-x-2 border-b-2 border-neoDark opacity-90 transform -rotate-1 z-10 pointer-events-none" />
 
@@ -42,8 +42,8 @@ export const ReceiptCard: React.FC<ReceiptCardProps> = ({
           <NeoBadge category={receipt.category} />
           <button
             onClick={() => receipt.id && onToggleFavorite(receipt.id, receipt.favorite)}
-            className={`p-1.5 border-2 border-neoDark transition-transform active:scale-90 ${
-              receipt.favorite ? 'bg-neoPink text-white' : 'bg-white text-neoDark hover:bg-red-50'
+            className={`p-1.5 border-2 border-neoDark transition-transform active:scale-90 cursor-pointer ${
+              receipt.favorite ? 'bg-neoPink text-white' : 'bg-white text-neoDark hover:bg-[#FBECEE]'
             }`}
             title="Sukai kenangan ini"
           >
@@ -55,7 +55,7 @@ export const ReceiptCard: React.FC<ReceiptCardProps> = ({
           {receipt.title}
         </h3>
 
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-xs font-bold text-gray-700">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-xs font-bold text-neoDark/70">
           <span className="flex items-center gap-1">
             <Calendar size={13} className="text-neoDark" />
             {receipt.date}
@@ -90,15 +90,15 @@ export const ReceiptCard: React.FC<ReceiptCardProps> = ({
       {/* Amount & Handwritten Note */}
       <div className="p-4 pt-1 flex-1 flex flex-col justify-between">
         {formattedAmount && (
-          <div className="inline-flex items-center gap-1 text-xs font-black font-grotesk bg-neoGreen/30 px-2 py-1 border border-neoDark w-fit mb-2">
+          <div className="inline-flex items-center gap-1 text-xs font-black font-grotesk bg-neoGreen/25 text-neoDark px-2 py-1 border border-neoDark w-fit mb-2">
             <DollarSign size={13} />
             {formattedAmount}
           </div>
         )}
 
         {receipt.notes && (
-          <div className="bg-[#FFF8E7] p-2.5 border-2 border-dashed border-neoDark/60 mb-3">
-            <p className="font-handwriting text-lg text-neoDark leading-snug">
+          <div className="bg-[#F3ECE1] p-2.5 border-2 border-dashed border-neoDark/40 mb-3">
+            <p className="font-handwriting text-xl text-neoDark leading-snug">
               "{receipt.notes}"
             </p>
           </div>
@@ -119,7 +119,7 @@ export const ReceiptCard: React.FC<ReceiptCardProps> = ({
 
           <button
             onClick={() => receipt.id && onDelete(receipt.id)}
-            className="p-2 border-2 border-neoDark bg-white hover:bg-red-500 hover:text-white text-neoDark transition-colors"
+            className="p-2 border-2 border-neoDark bg-white hover:bg-neoPink hover:text-white text-neoDark transition-colors cursor-pointer"
             title="Hapus struk"
           >
             <Trash2 size={15} />

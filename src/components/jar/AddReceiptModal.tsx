@@ -49,7 +49,7 @@ export const AddReceiptModal: React.FC<AddReceiptModalProps> = ({ isOpen, onClos
   };
 
   const generateDefaultReceiptSlip = () => {
-    const receiptSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect width="100%" height="100%" fill="%23FFFDF5"/><rect x="12" y="12" width="276" height="376" fill="none" stroke="%23121212" stroke-width="3" stroke-dasharray="6,4"/><text x="150" y="50" font-family="monospace" font-weight="900" font-size="18" text-anchor="middle" fill="%23121212">MEMORI KITA</text><line x1="25" y1="70" x2="275" y2="70" stroke="%23121212" stroke-width="2"/><text x="150" y="110" font-family="monospace" font-size="14" text-anchor="middle" fill="%23121212">${title || 'Kencan Manis'}</text><text x="150" y="140" font-family="monospace" font-size="12" text-anchor="middle" fill="%23555555">${date} • ${location || 'Tempat Spesial'}</text><rect x="40" y="180" width="220" height="50" fill="%23FFE600" stroke="%23121212" stroke-width="2"/><text x="150" y="212" font-family="monospace" font-weight="bold" font-size="14" text-anchor="middle" fill="%23121212">RP ${amount || '0'}</text><text x="150" y="280" font-family="cursive" font-size="20" text-anchor="middle" fill="%23FF6584">${notes || 'Kenangan tak terlupakan ❤️'}</text><text x="150" y="340" font-family="monospace" font-size="10" text-anchor="middle" fill="%23888888">★ THE RECEIPT JAR ARCHIVE ★</text></svg>`;
+    const receiptSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400" viewBox="0 0 300 400"><rect width="100%" height="100%" fill="%23FAF6F0"/><rect x="12" y="12" width="276" height="376" fill="none" stroke="%23221F1B" stroke-width="2.5" stroke-dasharray="6,4"/><text x="150" y="50" font-family="'Space Grotesk', monospace" font-weight="900" font-size="17" text-anchor="middle" fill="%23221F1B">MEMORI KITA</text><line x1="25" y1="70" x2="275" y2="70" stroke="%23221F1B" stroke-width="2"/><text x="150" y="110" font-family="'Space Grotesk', monospace" font-weight="bold" font-size="14" text-anchor="middle" fill="%23221F1B">${title || 'Kencan Manis'}</text><text x="150" y="140" font-family="'Space Grotesk', monospace" font-size="12" text-anchor="middle" fill="%23555555">${date} • ${location || 'Tempat Spesial'}</text><rect x="40" y="180" width="220" height="50" fill="%23EAC875" stroke="%23221F1B" stroke-width="2"/><text x="150" y="212" font-family="'Space Grotesk', monospace" font-weight="bold" font-size="14" text-anchor="middle" fill="%23221F1B">RP ${amount || '0'}</text><text x="150" y="280" font-family="'Caveat', cursive" font-size="22" text-anchor="middle" fill="%23D87D88">${notes || 'Kenangan tak terlupakan ❤️'}</text><text x="150" y="340" font-family="'Space Grotesk', monospace" font-size="10" text-anchor="middle" fill="%23888888">★ THE RECEIPT JAR ARCHIVE ★</text></svg>`;
     setImageUrl(receiptSvg);
   };
 
@@ -85,7 +85,7 @@ export const AddReceiptModal: React.FC<AddReceiptModalProps> = ({ isOpen, onClos
 
   return (
     <div className="fixed inset-0 z-50 bg-neoDark/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-      <div className="relative w-full max-w-lg bg-[#FFFDF5] border-3 border-neoDark shadow-neo-xl my-8">
+      <div className="relative w-full max-w-lg bg-[#FAF6F0] border-3 border-neoDark shadow-neo-xl my-8">
         {/* Header */}
         <div className="bg-neoYellow border-b-3 border-neoDark p-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -96,7 +96,7 @@ export const AddReceiptModal: React.FC<AddReceiptModalProps> = ({ isOpen, onClos
           </div>
           <button
             onClick={onClose}
-            className="p-1 border-2 border-neoDark bg-white hover:bg-neoPink hover:text-white transition-colors"
+            className="p-1 border-2 border-neoDark bg-white hover:bg-neoPink hover:text-white transition-colors cursor-pointer"
           >
             <X size={20} />
           </button>
@@ -105,7 +105,8 @@ export const AddReceiptModal: React.FC<AddReceiptModalProps> = ({ isOpen, onClos
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 max-h-[80vh] overflow-y-auto">
           {error && (
-            <div className="p-3 bg-neoPink text-white border-2 border-neoDark font-grotesk font-bold text-xs"> {error}
+            <div className="p-3 bg-neoPink text-white border-2 border-neoDark font-grotesk font-bold text-xs">
+              ⚠️ {error}
             </div>
           )}
 
@@ -132,7 +133,7 @@ export const AddReceiptModal: React.FC<AddReceiptModalProps> = ({ isOpen, onClos
                 <button
                   type="button"
                   onClick={() => setImageUrl('')}
-                  className="absolute top-2 right-2 bg-neoPink text-white border-2 border-neoDark p-1 text-xs font-bold hover:bg-red-600"
+                  className="absolute top-2 right-2 bg-neoPink text-white border-2 border-neoDark p-1 text-xs font-bold hover:bg-red-600 cursor-pointer"
                 >
                   <X size={16} />
                 </button>
@@ -159,7 +160,7 @@ export const AddReceiptModal: React.FC<AddReceiptModalProps> = ({ isOpen, onClos
                     Slip Tiket Digital
                   </NeoButton>
                 </div>
-                <p className="text-xs text-gray-500 font-grotesk">
+                <p className="text-xs text-neoDark/60 font-grotesk">
                   Format JPG, PNG, WEBP (maks. 5MB)
                 </p>
               </div>
@@ -186,11 +187,11 @@ export const AddReceiptModal: React.FC<AddReceiptModalProps> = ({ isOpen, onClos
                 onChange={(e) => setCategory(e.target.value as ReceiptCategory)}
                 className="w-full px-3 py-2.5 font-grotesk font-bold text-sm bg-white border-3 border-neoDark shadow-neo-sm focus:shadow-neo focus:outline-none"
               >
-                <option value="Kuliner">Kuliner</option>
-                <option value="Transport">Transport</option>
-                <option value="Bioskop">Bioskop</option>
-                <option value="Liburan">Liburan</option>
-                <option value="Lainnya">Lainnya</option>
+                <option value="Kuliner">Kuliner 🍔</option>
+                <option value="Transport">Transport ✈️</option>
+                <option value="Bioskop">Bioskop 🎬</option>
+                <option value="Liburan">Liburan 🏖️</option>
+                <option value="Lainnya">Lainnya ✨</option>
               </select>
             </div>
 

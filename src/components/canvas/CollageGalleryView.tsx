@@ -59,17 +59,17 @@ export const CollageGalleryView: React.FC<CollageGalleryViewProps> = ({
               key={col.id}
               className="bg-white border-3 border-neoDark shadow-neo hover:shadow-neo-lg transition-all flex flex-col justify-between"
             >
-              <div className="p-3 border-b-2 border-neoDark bg-yellow-50 flex items-center justify-between">
+              <div className="p-3 border-b-2 border-neoDark bg-[#F5EFE3] flex items-center justify-between">
                 <h3 className="font-grotesk font-black text-sm text-neoDark truncate">
                   {col.title}
                 </h3>
-                <span className="text-[11px] font-bold text-gray-600 font-grotesk flex items-center gap-1">
+                <span className="text-[11px] font-bold text-neoDark/70 font-grotesk flex items-center gap-1">
                   <Calendar size={12} /> {col.date}
                 </span>
               </div>
 
               {/* Preview */}
-              <div className="p-3 bg-[#FFFDF5] aspect-[4/3] flex items-center justify-center overflow-hidden">
+              <div className="p-3 bg-[#FAF6F0] aspect-[4/3] flex items-center justify-center overflow-hidden">
                 <img
                   src={col.previewUrl}
                   alt={col.title}
@@ -115,7 +115,7 @@ export const CollageGalleryView: React.FC<CollageGalleryViewProps> = ({
           <h3 className="font-grotesk font-black text-lg text-neoDark uppercase">
             Belum Ada Kolase yang Disimpan
           </h3>
-          <p className="font-grotesk text-sm text-gray-600 max-w-md">
+          <p className="font-grotesk text-sm text-neoDark/70 max-w-md">
             Rangkai karcis, stiker selotip washi tape, dan coretan tulisan tanganmu di kanvas, lalu simpan ke galeri ini!
           </p>
           <NeoButton

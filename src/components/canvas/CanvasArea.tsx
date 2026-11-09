@@ -121,9 +121,9 @@ export const CanvasArea: React.FC = () => {
       />
 
       {saveSuccessMsg && (
-        <div className="p-3 bg-neoGreen text-neoDark border-3 border-neoDark shadow-neo font-grotesk font-black text-xs flex items-center justify-between">
+        <div className="p-3 bg-neoGreen text-white border-3 border-neoDark shadow-neo font-grotesk font-black text-xs flex items-center justify-between">
           <span>✨ {saveSuccessMsg}</span>
-          <button onClick={() => setSaveSuccessMsg('')}>
+          <button onClick={() => setSaveSuccessMsg('')} className="cursor-pointer">
             <X size={16} />
           </button>
         </div>
@@ -135,18 +135,18 @@ export const CanvasArea: React.FC = () => {
         className="w-full flex items-center justify-center p-3 sm:p-6 bg-neoBase border-3 border-neoDark shadow-neo overflow-x-auto min-h-[460px] relative"
         style={{
           backgroundImage:
-            'radial-gradient(#121212 1px, transparent 1px), radial-gradient(#121212 1px, #FFFDF5 1px)',
+            'radial-gradient(#221F1B 1px, transparent 1px), radial-gradient(#221F1B 1px, #FAF6F0 1px)',
           backgroundSize: '24px 24px',
           backgroundPosition: '0 0, 12px 12px',
         }}
       >
-        <div className="border-3 border-neoDark shadow-neo-lg bg-[#FFFDF5] p-1 inline-block">
+        <div className="border-3 border-neoDark shadow-neo-lg bg-[#FAF6F0] p-1 inline-block">
           <canvas ref={canvasElementRef} />
         </div>
       </div>
 
       {/* Hints bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 bg-white border-2 border-neoDark text-xs font-grotesk text-gray-700">
+      <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 bg-white border-2 border-neoDark text-xs font-grotesk text-neoDark/80">
         <span>
           💡 <strong>Tips Scrapbook:</strong> Klik dua kali pada teks untuk mengedit. Geser sudut objek untuk memutar atau mengubah ukuran.
         </span>
@@ -170,14 +170,14 @@ export const CanvasArea: React.FC = () => {
       {/* Save Modal */}
       {isSaveModalOpen && (
         <div className="fixed inset-0 z-50 bg-neoDark/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-[#FFFDF5] border-3 border-neoDark shadow-neo-xl w-full max-w-md p-5 space-y-4">
+          <div className="bg-[#FAF6F0] border-3 border-neoDark shadow-neo-xl w-full max-w-md p-5 space-y-4">
             <div className="flex items-center justify-between border-b-2 border-neoDark pb-2">
               <h3 className="font-grotesk font-black text-base uppercase text-neoDark">
                 Simpan Kolase Scrapbook
               </h3>
               <button
                 onClick={() => setIsSaveModalOpen(false)}
-                className="p-1 border-2 border-neoDark hover:bg-neoPink hover:text-white"
+                className="p-1 border-2 border-neoDark hover:bg-neoPink hover:text-white cursor-pointer"
               >
                 <X size={16} />
               </button>

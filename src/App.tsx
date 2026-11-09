@@ -23,7 +23,6 @@ export const App: React.FC = () => {
   const { currentTab, setCurrentTab } = useAppStore();
   const [selectedCollageForEditing, setSelectedCollageForEditing] = useState<ScrapbookCollage | null>(null);
 
-  // Seed sample receipts if database is freshly empty
   useEffect(() => {
     seedSampleDataIfEmpty().catch(console.error);
   }, []);
@@ -67,9 +66,6 @@ export const App: React.FC = () => {
                 <span className="font-grotesk font-black text-lg sm:text-xl tracking-tight text-neoDark uppercase">
                   Digital Scrapbook
                 </span>
-                <span className="bg-neoPink text-white text-[10px] font-black px-1.5 py-0.5 border-2 border-neoDark shadow-neo-sm">
-                  PWA
-                </span>
               </div>
               <p className="font-handwriting text-sm text-neoDark/80 leading-none">
                 The Receipt Jar & Kanvas Kenangan Berdua
@@ -81,13 +77,13 @@ export const App: React.FC = () => {
           <div className="flex items-center gap-2 text-xs font-grotesk font-bold">
             <button
               onClick={exportAllDataAsJSON}
-              className="p-1.5 sm:px-2.5 sm:py-1 border-2 border-neoDark bg-white hover:bg-yellow-50 shadow-neo-sm flex items-center gap-1.5 text-neoDark transition-all"
+              className="p-1.5 sm:px-2.5 sm:py-1 border-2 border-neoDark bg-white hover:bg-[#F3ECE1] shadow-neo-sm flex items-center gap-1.5 text-neoDark transition-all cursor-pointer"
               title="Backup semua kenangan ke file JSON"
             >
               <DownloadCloud size={14} />
               <span className="hidden sm:inline">Backup</span>
             </button>
-            <label className="p-1.5 sm:px-2.5 sm:py-1 border-2 border-neoDark bg-white hover:bg-yellow-50 shadow-neo-sm flex items-center gap-1.5 text-neoDark transition-all cursor-pointer">
+            <label className="p-1.5 sm:px-2.5 sm:py-1 border-2 border-neoDark bg-white hover:bg-[#F3ECE1] shadow-neo-sm flex items-center gap-1.5 text-neoDark transition-all cursor-pointer">
               <UploadCloud size={14} />
               <span className="hidden sm:inline">Restore</span>
               <input

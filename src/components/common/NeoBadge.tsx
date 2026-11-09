@@ -14,12 +14,12 @@ export const NeoBadge: React.FC<NeoBadgeProps> = ({
   className = '',
   children,
 }) => {
-  // Category default color mapping
+  // Category default aesthetic color mapping
   const categoryColorMap: Record<string, string> = {
-    Kuliner: 'bg-neoOrange text-neoDark',
-    Transport: 'bg-neoBlue text-neoDark',
+    Kuliner: 'bg-neoOrange text-white',
+    Transport: 'bg-neoBlue text-white',
     Bioskop: 'bg-neoPink text-white',
-    Liburan: 'bg-neoGreen text-neoDark',
+    Liburan: 'bg-neoGreen text-white',
     Lainnya: 'bg-neoPurple text-white',
   };
 
@@ -27,8 +27,8 @@ export const NeoBadge: React.FC<NeoBadgeProps> = ({
     yellow: 'bg-neoYellow text-neoDark',
     pink: 'bg-neoPink text-white',
     purple: 'bg-neoPurple text-white',
-    green: 'bg-neoGreen text-neoDark',
-    blue: 'bg-neoBlue text-neoDark',
+    green: 'bg-neoGreen text-white',
+    blue: 'bg-neoBlue text-white',
     white: 'bg-white text-neoDark',
     dark: 'bg-neoDark text-white',
   };

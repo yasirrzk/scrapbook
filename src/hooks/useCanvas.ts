@@ -11,7 +11,7 @@ export interface UseCanvasOptions {
 export function useCanvas() {
   const canvasRef = useRef<Canvas | null>(null);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [brushColor, setBrushColor] = useState('#121212');
+  const [brushColor, setBrushColor] = useState('#221F1B');
   const [brushWidth, setBrushWidth] = useState(4);
   const [hasSelection, setHasSelection] = useState(false);
   const [canUndo, setCanUndo] = useState(false);
@@ -25,13 +25,13 @@ export function useCanvas() {
     const fabricCanvas = new Canvas(canvasEl, {
       width,
       height,
-      backgroundColor: '#FFFDF5',
+      backgroundColor: '#FAF6F0',
       selection: true,
       preserveObjectStacking: true,
     });
 
     const brush = new PencilBrush(fabricCanvas);
-    brush.color = '#121212';
+    brush.color = '#221F1B';
     brush.width = 4;
     fabricCanvas.freeDrawingBrush = brush;
 
@@ -89,10 +89,10 @@ export function useCanvas() {
       fontFamily: isHandwriting ? '"Caveat", cursive' : '"Space Grotesk", sans-serif',
       fontSize: isHandwriting ? 36 : 24,
       fontWeight: isHandwriting ? 'normal' : 'bold',
-      fill: '#121212',
-      cornerColor: '#FFE600',
-      cornerStrokeColor: '#121212',
-      borderColor: '#121212',
+      fill: '#221F1B',
+      cornerColor: '#EAC875',
+      cornerStrokeColor: '#221F1B',
+      borderColor: '#221F1B',
       cornerSize: 10,
       transparentCorners: false,
     });
@@ -123,9 +123,9 @@ export function useCanvas() {
         top: (c.height || 600) / 2 - ((img.height || 0) * scale) / 2 + (Math.random() * 40 - 20),
         scaleX: scale,
         scaleY: scale,
-        cornerColor: '#FFE600',
-        cornerStrokeColor: '#121212',
-        borderColor: '#121212',
+        cornerColor: '#EAC875',
+        cornerStrokeColor: '#221F1B',
+        borderColor: '#221F1B',
         cornerSize: 10,
         transparentCorners: false,
         angle: (Math.random() * 12) - 6, // slight playful neobrutal tilt
@@ -198,7 +198,7 @@ export function useCanvas() {
     const c = canvasRef.current;
     if (!c) return;
     c.clear();
-    c.backgroundColor = '#FFFDF5';
+    c.backgroundColor = '#FAF6F0';
     c.renderAll();
     setHasSelection(false);
   }, []);
@@ -256,7 +256,7 @@ export function useCanvas() {
     try {
       const parsed = typeof jsonStr === 'string' ? JSON.parse(jsonStr) : jsonStr;
       await c.loadFromJSON(parsed);
-      c.backgroundColor = '#FFFDF5';
+      c.backgroundColor = '#FAF6F0';
       c.renderAll();
     } catch (err) {
       console.error('Failed to load collage from JSON', err);

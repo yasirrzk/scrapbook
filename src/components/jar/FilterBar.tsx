@@ -61,7 +61,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({ totalCount }) => {
               className={`px-3 py-1.5 text-xs font-grotesk font-bold border-2 border-neoDark transition-all whitespace-nowrap cursor-pointer uppercase ${
                 isActive
                   ? 'bg-neoYellow text-neoDark shadow-neo-sm translate-x-[1px] translate-y-[1px]'
-                  : 'bg-white text-neoDark hover:bg-[#FFF8E7]'
+                  : 'bg-white text-neoDark hover:bg-[#F3ECE1]'
               }`}
             >
               {cat === 'Semua'}

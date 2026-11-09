@@ -29,7 +29,7 @@ export const ReceiptViewModal: React.FC<ReceiptViewModalProps> = ({ receipt, onC
 
   return (
     <div className="fixed inset-0 z-50 bg-neoDark/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      <div className="relative w-full max-w-xl bg-[#FFFDF5] border-3 border-neoDark shadow-neo-xl my-6">
+      <div className="relative w-full max-w-xl bg-[#FAF6F0] border-3 border-neoDark shadow-neo-xl my-6">
         {/* Header */}
         <div className="bg-neoYellow border-b-3 border-neoDark p-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -40,7 +40,7 @@ export const ReceiptViewModal: React.FC<ReceiptViewModalProps> = ({ receipt, onC
           </div>
           <button
             onClick={onClose}
-            className="p-1 border-2 border-neoDark bg-white hover:bg-neoPink hover:text-white transition-colors"
+            className="p-1 border-2 border-neoDark bg-white hover:bg-neoPink hover:text-white transition-colors cursor-pointer"
           >
             <X size={20} />
           </button>
@@ -59,14 +59,14 @@ export const ReceiptViewModal: React.FC<ReceiptViewModalProps> = ({ receipt, onC
           {/* Details */}
           <div className="grid grid-cols-2 gap-3 text-xs font-grotesk">
             <div className="p-3 bg-white border-2 border-neoDark">
-              <span className="text-gray-500 font-bold block mb-1 flex items-center gap-1">
+              <span className="text-neoDark/60 font-bold block mb-1 flex items-center gap-1">
                 <Calendar size={13} /> Tanggal
               </span>
               <span className="font-black text-sm text-neoDark">{receipt.date}</span>
             </div>
 
             <div className="p-3 bg-white border-2 border-neoDark">
-              <span className="text-gray-500 font-bold block mb-1 flex items-center gap-1">
+              <span className="text-neoDark/60 font-bold block mb-1 flex items-center gap-1">
                 <Tag size={13} /> Total Nominal
               </span>
               <span className="font-black text-sm text-neoDark">{formattedAmount || '-'}</span>
@@ -74,7 +74,7 @@ export const ReceiptViewModal: React.FC<ReceiptViewModalProps> = ({ receipt, onC
 
             {receipt.location && (
               <div className="col-span-2 p-3 bg-white border-2 border-neoDark">
-                <span className="text-gray-500 font-bold block mb-1 flex items-center gap-1">
+                <span className="text-neoDark/60 font-bold block mb-1 flex items-center gap-1">
                   <MapPin size={13} /> Lokasi
                 </span>
                 <span className="font-bold text-sm text-neoDark">{receipt.location}</span>
@@ -84,7 +84,7 @@ export const ReceiptViewModal: React.FC<ReceiptViewModalProps> = ({ receipt, onC
 
           {/* Handwritten Notes */}
           {receipt.notes && (
-            <div className="p-4 bg-[#FFF8E7] border-3 border-neoDark transform -rotate-0.5">
+            <div className="p-4 bg-[#F3ECE1] border-3 border-neoDark transform -rotate-0.5">
               <span className="font-grotesk font-black text-xs uppercase text-neoDark block mb-1">
                 Catatan Berdua ✍️
               </span>
@@ -100,7 +100,7 @@ export const ReceiptViewModal: React.FC<ReceiptViewModalProps> = ({ receipt, onC
               Tutup
             </NeoButton>
             <NeoButton variant="pink" onClick={handleUseOnCanvas}>
-              Tempel ke Scrapbook 
+              Tempel ke Scrapbook 🎨
             </NeoButton>
           </div>
         </div>

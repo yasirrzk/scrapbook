@@ -7,22 +7,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        neoBase: '#FFFDF5',
-        neoDark: '#121212',
-        neoYellow: '#FFE600',
-        neoPink: '#FF6584',
-        neoPurple: '#A388EE',
-        neoGreen: '#00E599',
-        neoBlue: '#58C4DC',
-        neoOrange: '#FF9F43',
+        neoBase: '#FAF6F0',      // Warm linen / ivory parchment
+        neoCard: '#FFFEFC',      // Soft warm milk white
+        neoDark: '#221F1B',      // Deep espresso graphite ink
+        neoYellow: '#EAC875',    // Warm honey / vintage ochre
+        neoPink: '#D87D88',      // Dusty romantic rose / muted blush
+        neoPurple: '#9C8EB9',    // Soft dusty wisteria / lavender mauve
+        neoGreen: '#8EA48B',     // Muted botanical sage
+        neoBlue: '#799BA8',      // French vintage slate blue
+        neoOrange: '#D48366',    // Warm terracotta / apricot
       },
       boxShadow: {
-        'neo-sm': '2px 2px 0px 0px #121212',
-        'neo': '4px 4px 0px 0px #121212',
-        'neo-lg': '6px 6px 0px 0px #121212',
-        'neo-xl': '8px 8px 0px 0px #121212',
-        'neo-active': '1px 1px 0px 0px #121212',
-        'neo-hover': '5px 5px 0px 0px #121212',
+        'neo-sm': '2px 2px 0px 0px #221F1B',
+        'neo': '4px 4px 0px 0px #221F1B',
+        'neo-lg': '6px 6px 0px 0px #221F1B',
+        'neo-xl': '8px 8px 0px 0px #221F1B',
+        'neo-active': '1px 1px 0px 0px #221F1B',
+        'neo-hover': '5px 5px 0px 0px #221F1B',
       },
       borderWidth: {
         '3': '3px',

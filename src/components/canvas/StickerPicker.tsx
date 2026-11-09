@@ -49,7 +49,7 @@ export const StickerPicker: React.FC<StickerPickerProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-neoDark/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-      <div className="bg-[#FFFDF5] border-3 border-neoDark shadow-neo-xl w-full max-w-lg my-6">
+      <div className="bg-[#FAF6F0] border-3 border-neoDark shadow-neo-xl w-full max-w-lg my-6">
         {/* Header */}
         <div className="bg-neoYellow border-b-3 border-neoDark p-3 sm:p-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -95,7 +95,7 @@ export const StickerPicker: React.FC<StickerPickerProps> = ({
                 onSelectSticker(sticker);
                 onClose();
               }}
-              className="p-3 bg-white border-2 border-neoDark hover:bg-yellow-50 hover:border-neoPink shadow-neo-sm hover:shadow-neo transition-all flex flex-col items-center justify-center gap-2 aspect-square group cursor-pointer"
+              className="p-3 bg-white border-2 border-neoDark hover:bg-[#F3ECE1] hover:border-neoPink shadow-neo-sm hover:shadow-neo transition-all flex flex-col items-center justify-center gap-2 aspect-square group cursor-pointer"
             >
               <img
                 src={sticker.url}
